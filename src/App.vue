@@ -1,19 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Flangle />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Flangle from "./components/Flangle";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Flangle,
+  },
+
+  data() {
+    return {
+      flType: "circle",
+    };
+  },
+
+  methods: {
+    choseCircle() {
+      this.flType = "circle";
+      console.log(this.flType);
+    },
+
+    choseSquare() {
+      this.flType = "scuare";
+      console.log(this.flType);
+    },
+  },
+};
 </script>
 
 <style>
