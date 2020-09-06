@@ -6,22 +6,7 @@
       <button @click="flType = false" :class="{active:flType === false}">ПРЯМОУГОЛЬНЫЙ</button>
     </div>
     <div class="circle-form" v-if="flType">
-      <label for>
-        <input @change="sizeC.dMax=$event.target.value" type="text" name id :value="sizeC.dMax" />
-        d_max
-      </label>
-      <label for>
-        <input @change="sizeC.dMin=$event.target.value" type="text" name id :value="sizeC.dMin" />
-        d_min
-      </label>
-      <label for>
-        <input @change="sizeC.thick=$event.target.value" type="text" name id :value="sizeC.thick" />
-        толщина
-      </label>
-      <label for>
-        <input @change="sizeC.dens=$event.target.value" type="text" name id :value="sizeC.dens" />
-        плотность материала (кг/м3)
-      </label>
+      <FormGen :title="'jojo'" :size="sizeC" />
     </div>
 
     <div class="square-form" v-if="!flType">
@@ -79,20 +64,35 @@ label input {
 
 
 <script>
+import FormGen from "../components/FormGen";
 export default {
   data() {
     return {
       sizeC: {
-        dMax: 200,
-        dMin: 100,
-        thick: 5,
-        dens: 7850,
+        dMax: {
+          name: "dmax",
+          value: 200,
+        },
+        dMin: {
+          name: "dmin",
+          value: 100,
+        },
+        thick: {
+          name: "толщина",
+          value: 5,
+        },
+        dens: {
+          name: "плотность ",
+          value: 7850,
+        },
       },
       flType: true,
       mass: 2,
     };
   },
-
+  components: {
+    FormGen,
+  },
   methods: {
     calcFlMass() {
       if (this.flType) {
